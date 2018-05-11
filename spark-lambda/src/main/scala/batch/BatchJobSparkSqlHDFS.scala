@@ -5,18 +5,14 @@ import java.lang.management.ManagementFactory
 import domain.Activity
 import org.apache.spark.sql.{SQLContext, SaveMode}
 import org.apache.spark.{SparkConf, SparkContext}
+import utils.SparkUtils._
 
 object BatchJobSparkSqlHDFS {
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setAppName("Spark-Lambda")
-    if (ManagementFactory.getRuntimeMXBean.getInputArguments.toString.contains("IntelliJ IDEA")) {
-      System.setProperty("hadoop.home.dir", "C:\\tools\\WinUtils")
-      conf.setMaster("local[*]")
-    }
 
-    val sc = new SparkContext(conf)
+    val sc = getSparkContext("Spark-Lambda")
 
-    implicit val sqlContext = new SQLContext(sc)
+    implicit val sqlContext = getSQLContext(sc)
 
     import org.apache.spark.sql.functions._
     import sqlContext.implicits._

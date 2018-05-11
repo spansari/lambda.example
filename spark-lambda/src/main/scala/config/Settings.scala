@@ -13,5 +13,7 @@ object Settings {
     lazy val pages = webLogGen.getInt("pages")
     lazy val visitors = webLogGen.getInt("visitors")
     lazy val filePath = webLogGen.getString("file_path")
+    lazy val destPath = webLogGen.getString("dest_path")
+    lazy val numberOfFile = webLogGen.getInt("number_of_files")
   }
 }
